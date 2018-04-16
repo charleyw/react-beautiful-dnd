@@ -9,7 +9,8 @@ node_modules/
 .DS_Store
 
 # generated files
-dist/
+# do not ignore dist due i need to install it from github
+# dist/
 
 # generated site
 site/

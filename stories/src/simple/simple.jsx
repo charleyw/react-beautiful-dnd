@@ -80,7 +80,7 @@ export default class App extends Component {
               style={getListStyle(droppableSnapshot.isDraggingOver)}
             >
               {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
+                <Draggable key={item.id} draggableId={item.id} index={index} skipDropAnimation={index === 0}>
                   {(draggableProvided, draggableSnapshot) => (
                     <div
                       ref={draggableProvided.innerRef}

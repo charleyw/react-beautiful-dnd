@@ -17,6 +17,7 @@ export type DraggableDescriptor = {|
   id: DraggableId,
   droppableId: DroppableId,
   index: number,
+  skipDropAnimation: ?boolean
 |}
 
 export type Position = {|

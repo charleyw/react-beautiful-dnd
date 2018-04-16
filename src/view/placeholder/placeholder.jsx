@@ -4,6 +4,7 @@ import type { Placeholder as PlaceholderType } from '../../types';
 
 type Props = {|
   placeholder: PlaceholderType,
+  providedPlaceholder: ?Node
 |}
 
 export default class Placeholder extends PureComponent<Props> {
@@ -38,6 +39,6 @@ export default class Placeholder extends PureComponent<Props> {
       pointerEvents: 'none',
     };
 
-    return React.createElement(tagName, { style });
+    return React.createElement(tagName, { style }, this.props.providedPlaceholder);
   }
 }

@@ -295,7 +295,7 @@ export default class Draggable extends Component<Props> {
       return 'INSTANT';
     })
 
-  renderChildren = (movementStyle: MovementStyle, dragHandleProps: ?DragHandleProps): ?Node => {
+  renderChildren = (movementStyle: MovementStyle, dragHandleProps: ?DragHandleProps, providedPlaceholder: ?Node): ?Node => {
     const {
       isDragging,
       isDropAnimating,
@@ -333,7 +333,7 @@ export default class Draggable extends Component<Props> {
         return null;
       }
 
-      return <Placeholder placeholder={dimension.placeholder} />;
+      return <Placeholder placeholder={dimension.placeholder} providedPlaceholder={providedPlaceholder} />;
     })();
 
     return (
@@ -355,6 +355,8 @@ export default class Draggable extends Component<Props> {
       direction,
       shouldAnimateDragMovement,
       disableInteractiveElementBlocking,
+      skipDropAnimation,
+      providedPlaceholder,
     } = this.props;
     const droppableId: DroppableId = this.context[droppableIdKey];
 
@@ -370,6 +372,7 @@ export default class Draggable extends Component<Props> {
         draggableId={draggableId}
         droppableId={droppableId}
         index={index}
+        skipDropAnimation={skipDropAnimation}
         getDraggableRef={this.getDraggableRef}
       >
         <Moveable
@@ -389,7 +392,7 @@ export default class Draggable extends Component<Props> {
               canDragInteractiveElements={disableInteractiveElementBlocking}
             >
               {(dragHandleProps: ?DragHandleProps) =>
-                this.renderChildren(movementStyle, dragHandleProps)
+                this.renderChildren(movementStyle, dragHandleProps, providedPlaceholder)
               }
             </DragHandle>
           )}

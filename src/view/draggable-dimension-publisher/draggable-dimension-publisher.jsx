@@ -21,6 +21,7 @@ type Props = {|
   draggableId: DraggableId,
   droppableId: DroppableId,
   index: number,
+  skipDropAnimation: ?boolean,
   getDraggableRef: () => ?HTMLElement,
   children: Node,
 |}
@@ -46,17 +47,19 @@ export default class DraggableDimensionPublisher extends Component<Props> {
   }
 
   getMemoizedDescriptor = memoizeOne(
-    (id: DraggableId, droppableId: DroppableId, index: number): DraggableDescriptor => ({
+    (id: DraggableId, droppableId: DroppableId, index: number, skipDropAnimation: boolean = false): DraggableDescriptor => ({
       id,
       droppableId,
       index,
+      skipDropAnimation,
     }));
 
   publish = () => {
     const descriptor: DraggableDescriptor = this.getMemoizedDescriptor(
       this.props.draggableId,
       this.props.droppableId,
-      this.props.index
+      this.props.index,
+      this.props.skipDropAnimation
     );
 
     // No changes to the descriptor

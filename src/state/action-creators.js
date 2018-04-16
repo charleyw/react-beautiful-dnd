@@ -365,7 +365,7 @@ export const drop = () =>
     const isAnimationRequired = !isEqual(
       current.client.offset,
       newHomeOffset,
-    );
+    ) && !descriptor.skipDropAnimation;
 
     if (!isAnimationRequired) {
       dispatch(completeDrop(result));
